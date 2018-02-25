@@ -15,7 +15,9 @@ address:String,
 speacility:String,
 timing:String,
 services:String,
-areahead:String
+areahead:String,
+longitude:Number,
+latitude:Number
 
 });
 const app =express();
@@ -27,7 +29,7 @@ app.get('/',(req,res)=>{res.render('apps')});
 app.get('/database*',(req,res)=>{
  var query =url.parse(req.url,true).query;
 
- const data = new doctorDatabase({name:query.doctor,phone:query.phone,address:query.address,speacility:query.speacility,timing:query.timing,services:query.services,areahead:query.areahead });
+ const data = new doctorDatabase({name:query.doctor,phone:query.phone,address:query.address,speacility:query.speacility,timing:query.timing,services:query.services,areahead:query.areahead,longitude:query.long,latitude:query.lat });
  data.save().then(()=>{console.log("Ok");});
 res.send(query.doctor);
 
